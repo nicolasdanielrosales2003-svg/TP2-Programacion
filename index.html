@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catálogo de películas</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <main class="contenedor">
+    <section class="presentacion">
+      <p class="etiqueta">CATÁLOGO DE CINE</p>
+    
+
+      <label class="buscador" for="buscar">
+        <span aria-hidden="true">⌕</span>
+        <input id="buscar" type="search" placeholder="Buscá una película..." autocomplete="off">
+        <button id="limpiar" type="button" aria-label="Limpiar búsqueda">✕</button>
+      </label>
+      <p id="ayuda" class="ayuda">Escribí al menos 3 letras para buscar por título o descripción.</p>
+    </section>
+
+    <section class="barra-catalogo" aria-live="polite">
+      <h2>Películas <span id="cantidad">12</span></h2>
+      <p id="estado">Mostrando todas las películas</p>
+    </section>
+
+    <section id="catalogo" class="catalogo" aria-label="Catálogo de películas"></section>
+    <p id="sin-resultados" class="sin-resultados" hidden>No encontramos películas con esa búsqueda. Probá con otras palabras.</p>
+  </main>
+
+  <footer>
+    <p></p>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>

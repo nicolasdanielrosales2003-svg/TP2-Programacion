@@ -1,0 +1,100 @@
+/* Estilos generales */
+:root {
+  --fondo: #101113;
+  --tarjeta: #191b1f;
+  --texto: #f2f3f1;
+  --secundario: #a1a5a1;
+  --borde: #2c2f33;
+  --acento: #7cc9a7;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--fondo);
+  color: var(--texto);
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.5;
+}
+
+.encabezado {
+  min-height: 76px;
+  padding: 18px max(6vw, 24px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  border-bottom: 1px solid var(--borde);
+  background: rgba(22, 24, 27, 0.92);
+}
+
+.marca {
+  color: var(--texto);
+  text-decoration: none;
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: -0.06em;
+}
+.marca span { color: var(--acento); }
+.encabezado p { margin: 0; color: var(--secundario); font-size: 0.9rem; }
+
+.contenedor { width: min(1120px, 88%); margin: 0 auto; }
+
+.presentacion { padding: 64px 0 35px; text-align: center; }
+.etiqueta { color: var(--acento); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.16em; }
+h1 { margin: 8px 0 10px; font-size: clamp(2rem, 5vw, 3.4rem); letter-spacing: -0.055em; line-height: 1.1; }
+.subtitulo { max-width: 550px; margin: 0 auto; color: var(--secundario); }
+
+.buscador {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: min(600px, 100%);
+  margin: 28px auto 0;
+  padding: 0 15px;
+  border: 1px solid #dcded6;
+  border-radius: 12px;
+  background: #191b1f;
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.22);
+}
+.buscador > span { color: var(--acento); font-size: 1.8rem; }
+.buscador input { flex: 1; min-width: 0; padding: 16px 0; border: 0; outline: 0; color: var(--texto); font: inherit; background: transparent; }
+.buscador input:focus-visible { outline: 2px solid var(--acento); outline-offset: 3px; }
+.buscador button { border: 0; padding: 8px; color: var(--secundario); background: transparent; cursor: pointer; font-size: 1rem; }
+.ayuda { min-height: 22px; margin: 9px 0 0; color: var(--secundario); font-size: 0.82rem; }
+
+.barra-catalogo { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin: 20px 0 18px; }
+.barra-catalogo h2 { margin: 0; font-size: 1.25rem; letter-spacing: -0.03em; }
+#cantidad { display: inline-grid; place-items: center; min-width: 26px; height: 26px; margin-left: 5px; border-radius: 50%; background: #23382f; color: var(--acento); font-size: 0.8rem; }
+.barra-catalogo p { margin: 0; color: var(--secundario); font-size: 0.85rem; }
+
+.catalogo { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px; padding-bottom: 64px; }
+.pelicula { overflow: hidden; border: 1px solid var(--borde); border-radius: 14px; background: var(--tarjeta); transition: transform 180ms ease, box-shadow 180ms ease; }
+.pelicula:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(0, 0, 0, 0.32); }
+.poster { display: block; width: 100%; aspect-ratio: 2 / 3; object-fit: cover; background: #24272b; }
+.info { padding: 15px; }
+.meta { display: flex; justify-content: space-between; align-items: center; gap: 8px; color: var(--secundario); font-size: 0.76rem; }
+.genero { padding: 4px 8px; border-radius: 100px; background: #26332c; color: #a8ddc0; }
+.info h3 { margin: 10px 0 7px; font-size: 1.05rem; line-height: 1.25; }
+.info p { margin: 0; color: #c0c4bf; font-size: 0.87rem; }
+.sin-resultados { padding: 30px 0 70px; text-align: center; color: var(--secundario); }
+
+footer { border-top: 1px solid var(--borde); padding: 22px; text-align: center; color: var(--secundario); font-size: 0.8rem; }
+footer p { margin: 0; }
+
+@media (max-width: 900px) {
+  .catalogo { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 650px) {
+  .encabezado { align-items: flex-start; flex-direction: column; gap: 3px; }
+  .presentacion { padding-top: 45px; }
+  .catalogo { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 13px; }
+  .info { padding: 11px; }
+  .info h3 { font-size: 0.95rem; }
+  .info p { font-size: 0.8rem; }
+  .barra-catalogo { align-items: flex-start; flex-direction: column; gap: 4px; }
+}
+@media (max-width: 370px) {
+  .catalogo { grid-template-columns: 1fr; }
+}
