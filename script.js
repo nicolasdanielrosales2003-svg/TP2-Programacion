@@ -39,7 +39,7 @@ const peliculas = [
     titulo: "Jurassic Park",
     anio: 1993,
     genero: "Aventura",
-    imagen: "https://image.tmdb.org/t/p/w500/jjO4J8Q2g5zT7wF1s9n8x5b3s5P.jpg",
+    imagen: "imagen: "https://image.tmdb.org/t/p/w500/oU7Oq2kFAAlG sf.jpg".replace(" ", ""),
     descripcion: "Un parque con dinosaurios clonados se convierte en una aventura peligrosa cuando falla la seguridad."
   },
   {
