@@ -1,4 +1,3 @@
-
 const peliculas = [
   {
     titulo: "Interestelar",
@@ -39,14 +38,14 @@ const peliculas = [
     titulo: "Jurassic Park",
     anio: 1993,
     genero: "Aventura",
-    imagen: "https://image.tmdb.org/t/p/w500/c414cDeQ9b6qLPLeKmiJuLDUREJ.jpg",
+    imagen: "https://image.tmdb.org/t/p/w500/d9mtMGQDLANKieb9PbD3yK7xxzo.jpg",
     descripcion: "Un parque con dinosaurios clonados se convierte en una aventura peligrosa cuando falla la seguridad."
   },
   {
     titulo: "Volver al futuro",
     anio: 1985,
     genero: "Aventura",
-    imagen: "https://image.tmdb.org/t/p/w500/fq3wyOs1RHyz2yfzsb4sck7a0T.jpg",
+    imagen: "https://image.tmdb.org/t/p/w500/vN5B5WgYscRGcQpVhHl6p9DDTP0.jpg",
     descripcion: "Marty McFly viaja accidentalmente al pasado y debe asegurarse de que sus padres se conozcan."
   },
   {
