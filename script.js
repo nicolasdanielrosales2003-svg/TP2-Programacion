@@ -38,14 +38,14 @@ const peliculas = [
     titulo: "Jurassic Park",
     anio: 1993,
     genero: "Aventura",
-    imagen: "https://image.tmdb.org/t/p/w500/d9mtMGQDLANKieb9PbD3yK7xxzo.jpg",
+    imagen: "https://upload.wikimedia.org/wikipedia/en/e/e7/Jurassic_Park_poster.jpg",
     descripcion: "Un parque con dinosaurios clonados se convierte en una aventura peligrosa cuando falla la seguridad."
   },
   {
     titulo: "Volver al futuro",
     anio: 1985,
     genero: "Aventura",
-    imagen: "https://image.tmdb.org/t/p/w500/vN5B5WgYscRGcQpVhHl6p9DDTP0.jpg",
+    imagen: "https://upload.wikimedia.org/wikipedia/en/d/d2/Back_to_the_Future.jpg",
     descripcion: "Marty McFly viaja accidentalmente al pasado y debe asegurarse de que sus padres se conozcan."
   },
   {
@@ -201,7 +201,7 @@ function buscarPeliculas() {
   mostrarPeliculas(resultados);
 }
 
-// Eventos: cada uno se registra una sola vez
+// Eventos
 buscar.addEventListener("input", buscarPeliculas);
 filtroGenero.addEventListener("change", buscarPeliculas);
 
