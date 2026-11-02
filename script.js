@@ -1,4 +1,4 @@
-// Catálogo inicial: 12 películas con pósters, datos y descripciones.
+
 const peliculas = [
   {
     titulo: "Interestelar",
@@ -39,7 +39,7 @@ const peliculas = [
     titulo: "Jurassic Park",
     anio: 1993,
     genero: "Aventura",
-    imagen: "imagen: "https://image.tmdb.org/t/p/w500/oU7Oq2kFAAlG sf.jpg".replace(" ", ""),
+    imagen: "https://image.tmdb.org/t/p/w500/c414cDeQ9b6qLPLeKmiJuLDUREJ.jpg",
     descripcion: "Un parque con dinosaurios clonados se convierte en una aventura peligrosa cuando falla la seguridad."
   },
   {
@@ -86,6 +86,7 @@ const peliculas = [
   }
 ];
 
+// Elementos de la página
 const filtroGenero = document.querySelector("#filtro-genero");
 const catalogo = document.querySelector("#catalogo");
 const buscar = document.querySelector("#buscar");
@@ -95,18 +96,24 @@ const estado = document.querySelector("#estado");
 const ayuda = document.querySelector("#ayuda");
 const sinResultados = document.querySelector("#sin-resultados");
 
-// Evita que errores de una URL de póster dejen una imagen rota.
+// Imagen alternativa por si un póster no carga
 function imagenDeRespaldo(titulo) {
   const texto = titulo.replace(/[&<>"']/g, "").slice(0, 26);
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="400" height="600" viewBox="0 0 400 600">
-    <rect width="400" height="600" fill="#e8ece7"/>
-    <circle cx="200" cy="210" r="70" fill="#c8d7cc"/>
-    <path d="M80 430 Q200 300 320 430 V520 H80Z" fill="#b3c9bb"/>
-    <text x="200" y="565" text-anchor="middle" font-family="Arial" font-size="20" fill="#294c3b">${texto}</text>
-  </svg>`;
+
+  const svg = `
+    <svg xmlns="http://www.w3.org/2000/svg"
+         width="400" height="600" viewBox="0 0 400 600">
+      <rect width="400" height="600" fill="#191b1f"/>
+      <circle cx="200" cy="210" r="70" fill="#26332c"/>
+      <path d="M80 430 Q200 300 320 430 V520 H80Z" fill="#355b49"/>
+      <text x="200" y="565" text-anchor="middle"
+            font-family="Arial" font-size="20" fill="#7cc9a7">${texto}</text>
+    </svg>`;
+
   return "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(svg);
 }
 
+// Crear la tarjeta de una película
 function crearTarjeta(pelicula) {
   const tarjeta = document.createElement("article");
   tarjeta.className = "pelicula";
@@ -116,6 +123,7 @@ function crearTarjeta(pelicula) {
   imagen.src = pelicula.imagen;
   imagen.alt = `Póster de ${pelicula.titulo}`;
   imagen.loading = "lazy";
+
   imagen.onerror = () => {
     imagen.onerror = null;
     imagen.src = imagenDeRespaldo(pelicula.titulo);
@@ -143,31 +151,37 @@ function crearTarjeta(pelicula) {
   meta.append(genero, anio);
   info.append(meta, titulo, descripcion);
   tarjeta.append(imagen, info);
+
   return tarjeta;
 }
 
+// Mostrar las películas en pantalla
 function mostrarPeliculas(lista) {
   catalogo.replaceChildren(...lista.map(crearTarjeta));
+
   cantidad.textContent = lista.length;
   sinResultados.hidden = lista.length !== 0;
 
   const texto = buscar.value.trim();
+
   if (texto.length >= 3) {
-    estado.textContent = `${lista.length} resultado(s) para “${texto}”`;
+    estado.textContent = `${lista.length} resultado(s) para "${texto}"`;
   } else {
-    estado.textContent = "Mostrando todas las películas";
+    estado.textContent = "Mostrando películas según el filtro";
   }
 }
 
-
+// Buscar por texto y filtrar por género
 function buscarPeliculas() {
   const texto = buscar.value.trim().toLocaleLowerCase("es");
   const generoSeleccionado = filtroGenero.value;
 
   if (texto.length > 0 && texto.length < 3) {
-    ayuda.textContent = "Escribí una letra más para iniciar la búsqueda (mínimo 3).";
+    ayuda.textContent =
+      "Escribí una letra más para iniciar la búsqueda (mínimo 3).";
   } else {
-    ayuda.textContent = "Podés buscar por título, género o descripción.";
+    ayuda.textContent =
+      "Podés buscar por título, género o descripción.";
   }
 
   const resultados = peliculas.filter((pelicula) => {
@@ -188,23 +202,8 @@ function buscarPeliculas() {
   mostrarPeliculas(resultados);
 }
 
-  }
-
-  ayuda.textContent = "Podés buscar por título, género o descripción.";
-  if (texto.length === 0) {
-    mostrarPeliculas(peliculas);
-    return;
-  }
-
-  const resultados = peliculas.filter((pelicula) => {
-    const contenido = `${pelicula.titulo} ${pelicula.genero} ${pelicula.descripcion}`.toLocaleLowerCase("es");
-    return contenido.includes(texto);
-  });
-
-  mostrarPeliculas(resultados);
-}
+// Eventos: cada uno se registra una sola vez
 buscar.addEventListener("input", buscarPeliculas);
-
 filtroGenero.addEventListener("change", buscarPeliculas);
 
 limpiar.addEventListener("click", () => {
@@ -213,12 +212,5 @@ limpiar.addEventListener("click", () => {
   buscar.focus();
 });
 
-mostrarPeliculas(peliculas);
-buscar.addEventListener("input", buscarPeliculas);
-limpiar.addEventListener("click", () => {
-  buscar.value = "";
-  buscarPeliculas();
-  buscar.focus();
-});
-
+// Mostrar el catálogo al abrir la página
 mostrarPeliculas(peliculas);
