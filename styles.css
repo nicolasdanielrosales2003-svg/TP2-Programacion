@@ -98,3 +98,28 @@ footer p { margin: 0; }
 @media (max-width: 370px) {
   .catalogo { grid-template-columns: 1fr; }
 }
+
+.filtros {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin: 16px auto;
+  color: var(--texto);
+}
+
+.filtros select {
+  padding: 11px 14px;
+  border: 1px solid var(--borde);
+  border-radius: 9px;
+  background: var(--tarjeta);
+  color: var(--texto);
+  font: inherit;
+  cursor: pointer;
+  max-width: 100%;
+}
+
+.filtros select:focus {
+  outline: 2px solid var(--acento);
+  outline-offset: 2px;
+}
