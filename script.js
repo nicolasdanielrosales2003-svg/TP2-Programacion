@@ -86,6 +86,7 @@ const peliculas = [
   }
 ];
 
+const filtroGenero = document.querySelector("#filtro-genero");
 const catalogo = document.querySelector("#catalogo");
 const buscar = document.querySelector("#buscar");
 const limpiar = document.querySelector("#limpiar");
@@ -158,13 +159,35 @@ function mostrarPeliculas(lista) {
   }
 }
 
+
 function buscarPeliculas() {
   const texto = buscar.value.trim().toLocaleLowerCase("es");
+  const generoSeleccionado = filtroGenero.value;
 
   if (texto.length > 0 && texto.length < 3) {
     ayuda.textContent = "Escribí una letra más para iniciar la búsqueda (mínimo 3).";
-    mostrarPeliculas(peliculas);
-    return;
+  } else {
+    ayuda.textContent = "Podés buscar por título, género o descripción.";
+  }
+
+  const resultados = peliculas.filter((pelicula) => {
+    const coincideGenero =
+      generoSeleccionado === "todos" ||
+      pelicula.genero === generoSeleccionado;
+
+    const contenido =
+      `${pelicula.titulo} ${pelicula.genero} ${pelicula.descripcion}`
+        .toLocaleLowerCase("es");
+
+    const coincideTexto =
+      texto.length < 3 || contenido.includes(texto);
+
+    return coincideGenero && coincideTexto;
+  });
+
+  mostrarPeliculas(resultados);
+}
+
   }
 
   ayuda.textContent = "Podés buscar por título, género o descripción.";
@@ -180,7 +203,17 @@ function buscarPeliculas() {
 
   mostrarPeliculas(resultados);
 }
+buscar.addEventListener("input", buscarPeliculas);
 
+filtroGenero.addEventListener("change", buscarPeliculas);
+
+limpiar.addEventListener("click", () => {
+  buscar.value = "";
+  buscarPeliculas();
+  buscar.focus();
+});
+
+mostrarPeliculas(peliculas);
 buscar.addEventListener("input", buscarPeliculas);
 limpiar.addEventListener("click", () => {
   buscar.value = "";
